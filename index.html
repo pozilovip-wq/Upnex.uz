@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Upnex — Talaba Ro‘yxatdan O‘tkazish</title>
+  <meta name="theme-color" content="#0c1024" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#0c1024;--card:#0d1230aa;--stroke:#27305e99;--text:#eaf0ff;--muted:#a9b4d9;--accent:#7aa2ff;--accent2:#66e1ff;--btn:#3451ff;--ghost:#1b2147}
+    *{box-sizing:border-box}html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    .shell{max-width:1080px;margin:0 auto;padding:20px}
+    .bg .g{position:fixed;inset:auto auto 0 0;width:60vw;height:60vh;filter:blur(80px);opacity:.6;z-index:-3;border-radius:50%}
+    .bg .g1{background:linear-gradient(45deg,#2840ff,#00d1ff);left:-10vw;bottom:-10vh}
+    .bg .g2{background:linear-gradient(45deg,#b400ff,#1f8fff);right:-10vw;bottom:-20vh}
+    .bg .grain{position:fixed;inset:0;pointer-events:none;background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2272%22 height=%2272%22 viewBox=%220 0 72 72%22><filter id=%22n%22 x=%220%22 y=%220%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%222%22 stitchTiles=%22stitch%22/></filter><rect width=%2272%22 height=%2272%22 filter=%22url(%23n)%22 opacity=%220.035%22/></svg>');z-index:-2;mix-blend-mode:soft-light}
+    .glass{background:var(--card);border:1px solid var(--stroke);backdrop-filter:blur(10px);border-radius:16px}
+    .header{display:flex;gap:16px;align-items:center;justify-content:space-between;margin-top:14px}
+    .brand .logo{font-weight:800;font-size:26px;letter-spacing:.5px}
+    .brand .tagline{font-size:12px;color:var(--muted)}
+    .contact{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--muted)}
+    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;margin-top:18px;padding:24px}
+    .hero h1{margin:0 0 6px 0;font-size:28px}.hero .accent{color:var(--accent2)}
+    .stepper{display:flex;align-items:center;gap:10px;justify-content:flex-end}
+    .stepper .bar{height:2px;width:32px;background:#203066;border-radius:2px;opacity:.7}
+    .dot{display:flex;flex-direction:column;align-items:center;gap:6px;opacity:.5}
+    .dot.active{opacity:1}
+    .dot span{display:grid;place-items:center;width:28px;height:28px;border-radius:999px;border:1px solid #334299;background:#151b3d}
+    .form{margin:18px 0;padding:18px}
+    .panel{display:none}.panel.active{display:block;animation:fade .25s ease}
+    @keyframes fade{from{opacity:.5;transform:translateY(4px)}to{opacity:1;transform:none}}
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .row{display:flex;align-items:center}.between{justify-content:space-between}.end{justify-content:flex-end}.gap{gap:12px}
+    .btn{border:1px solid transparent;background:var(--btn);color:#fff;padding:10px 16px;border-radius:12px;cursor:pointer}
+    .btn:hover{filter:brightness(1.05)}.ghost{background:var(--ghost);border-color:#2a3469}
+    .float{position:relative;display:block}
+    .float input,.float select,.float textarea{width:100%;border:1px solid #2a3469;background:#0b1130;color:var(--text);padding:14px 12px;border-radius:12px;outline:none}
+    .float textarea{min-height:110px;resize:vertical}
+    .float span{position:absolute;left:12px;top:10px;font-size:12px;color:var(--muted);transition:all .15s ease;background:#0b1130;padding:0 6px}
+    .float input:focus+span,.float input:not(:placeholder-shown)+span,.float select:focus+span,.float textarea:focus+span,.float textarea:not(:placeholder-shown)+span{top:-8px;font-size:11px;color:#a9c0ff}
+    .float.textarea span{top:8px}.float textarea:not(:placeholder-shown)+span{top:-8px}
+    .chips{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+    .chip{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;border:1px solid #2a3469;background:#0b1130;color:var(--text);cursor:pointer}
+    .privacy{padding:16px;margin:16px 0}
+    .footer{display:flex;justify-content:center;margin-bottom:24px}
+    @media (max-width:860px){.hero{grid-template-columns:1fr}.stepper{justify-content:flex-start}.grid2{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="bg"><div class="g g1"></div><div class="g g2"></div><div class="grain"></div></div>
+
+  <header class="shell header glass">
+    <div class="brand">
+      <div class="logo">UPNEX</div>
+      <div class="tagline">We are Upnex, You are Next</div>
+    </div>
+    <nav class="contact">
+      <a href="tel:+998504553355">📞 +998 50 455 33 55</a>
+      <span>📍 Andijon sh., Istiqlol 9 (Bobur haykal stoyankasi)</span>
+      <a href="mailto:upnex.uz@gmail.com">✉️ upnex.uz@gmail.com</a>
+    </nav>
+  </header>
+
+  <main class="shell">
+    <section class="hero glass">
+      <div>
+        <h1>Ro‘yxatdan o‘ting — <span class="accent">birgalikda</span> oldinga!</h1>
+        <p>Ariza 5 bosqichda to‘ldiriladi. Hujjatlarni yuklang, testlar va rejalaringizni yozing.</p>
+        <ul style="padding-left:18px;margin:8px 0 0 0;opacity:.9">
+          <li>🛡️ Maxfiylik kafolati</li>
+          <li>📬 Netlify Forms orqali tez qabul</li>
+          <li>🎯 To‘liq kuzatuv</li>
+        </ul>
+      </div>
+      <div class="stepper">
+        <div class="dot active"><span>1</span><label>Shaxsiy</label></div><div class="bar"></div>
+        <div class="dot"><span>2</span><label>Ta’lim</label></div><div class="bar"></div>
+        <div class="dot"><span>3</span><label>Hujjat</label></div><div class="bar"></div>
+        <div class="dot"><span>4</span><label>Oila & Til</label></div><div class="bar"></div>
+        <div class="dot"><span>5</span><label>Tasdiq</label></div>
+      </div>
+    </section>
+
+    <!-- ZERO-EDIT: Netlify Forms handles the submission -->
+    <form name="upnex-registration" method="POST" data-netlify="true" netlify-honeypot="bot-field"
+          class="form glass" id="form" enctype="multipart/form-data" action="/success">
+      <input type="hidden" name="form-name" value="upnex-registration" />
+      <p hidden><label>Don’t fill this out: <input name="bot-field" /></label></p>
+
+      <!-- STEP 1 -->
+      <section class="panel active" data-step="1">
+        <h2>1 — Shaxsiy ma’lumotlar</h2>
+        <div class="grid2">
+          <label class="float"><input name="full_name" required placeholder=" "><span>To‘liq ism-familiya (pasportdagidek) *</span></label>
+          <label class="float"><input name="dob" required placeholder="YYYY-MM-DD yoki 22 yosh"><span>Tug‘ilgan sana yoki yosh *</span></label>
+          <label class="float"><input name="phone" required placeholder="+998 XX XXX XX XX"><span>Telefon (Telegram) *</span></label>
+          <label class="float"><input name="email" type="email" required placeholder="name@example.com"><span>Email *</span></label>
+          <label class="float"><input name="address" required placeholder=" "><span>Manzil *</span></label>
+          <label class="float"><input name="passport_number" placeholder="AA1234567"><span>Pasport raqami</span></label>
+        </div>
+        <div class="grid2">
+          <label class="float"><input name="birth_place" required placeholder=" "><span>Tug‘ilgan joy *</span></label>
+          <label class="float"><input name="citizenship" required placeholder=" "><span>Fuqarolik *</span></label>
+        </div>
+        <div class="row end gap"><button type="button" class="btn next">Keyingi</button></div>
+      </section>
+
+      <!-- STEP 2 -->
+      <section class="panel" data-step="2">
+        <h2>2 — Ta’lim va maqsadlar</h2>
+        <label class="float"><input name="school_name_en" required placeholder=" "><span>O‘qigan maktab/kollej/litsey (inglizcha) *</span></label>
+        <div class="grid2">
+          <label class="float"><input name="start_date" required placeholder="MM/YYYY"><span>Boshlagan sana *</span></label>
+          <label class="float"><input name="end_date" required placeholder="MM/YYYY"><span>Tugatgan sana *</span></label>
+        </div>
+        <div class="grid2">
+          <label class="float">
+            <select name="education_level" required>
+              <option value="">— Tanlang —</option>
+              <option>Bakalavr davom etyapman</option><option>Bakalavr tugallangan</option>
+              <option>Magistratura davom etyapman</option><option>Magistratura tugallangan</option>
+              <option>Litsey/Kollej</option><option>Maktab</option><option>Boshqa</option>
+            </select><span>Eng so‘nggi ta’lim bosqichi *</span>
+          </label>
+          <label class="float"><input name="major_interest" required placeholder="Marketing, IT, Finance"><span>Qiziqqan yo‘nalish(lar) *</span></label>
+        </div>
+        <div class="grid2">
+          <label class="float">
+            <select name="destination" required>
+              <option value="">— Tanlang —</option><option>AQSh</option><option>Yevropa</option><option>Osiyo</option><option>Kanada</option><option>Boshqa</option>
+            </select><span>Qaysi mintaqa? *</span>
+          </label>
+          <label class="float">
+            <select name="intake" required>
+              <option value="">— Tanlang —</option><option>2025 Spring</option><option>2025 Fall</option><option>2026 Spring</option><option>2026 Fall</option>
+            </select><span>Qachon boshlamoqchisiz? *</span>
+          </label>
+        </div>
+        <div class="grid2">
+          <label class="float"><input name="budget" type="number" required placeholder="10000"><span>Yillik byudjet (USD) *</span></label>
+          <label class="float"><input name="gpa" placeholder="3.5 yoki 86/100"><span>O‘rtacha baho (ixtiyoriy)</span></label>
+        </div>
+        <div class="chips">
+          <span>Testlar/Sertifikatlar:</span>
+          <label class="chip"><input type="checkbox" name="tests" value="IELTS">IELTS</label>
+          <label class="chip"><input type="checkbox" name="tests" value="TOEFL">TOEFL</label>
+          <label class="chip"><input type="checkbox" name="tests" value="Duolingo">Duolingo</label>
+          <label class="chip"><input type="checkbox" name="tests" value="SAT">SAT</label>
+          <label class="chip"><input type="checkbox" name="tests" value="ACT">ACT</label>
+          <label class="chip"><input type="checkbox" name="tests" value="Yo‘q">Yo‘q</label>
+        </div>
+        <div class="grid2">
+          <label class="float"><input name="ielts_score" placeholder="IELTS 6.5 / Duolingo 110"><span>IELTS/TOEFL/Duolingo bali</span></label>
+          <label class="float"><input name="sat_act_score" placeholder="SAT 1300"><span>SAT/ACT bali</span></label>
+        </div>
+        <div class="row between gap"><button type="button" class="btn ghost prev">Ortga</button><button type="button" class="btn next">Keyingi</button></div>
+      </section>
+
+      <!-- STEP 3 -->
+      <section class="panel" data-step="3">
+        <h2>3 — Hujjatlar</h2>
+        <label class="float"><input name="passport_file" type="file" accept=".pdf,.jpg,.jpeg,.png" required><span>Pasport nusxasi (PDF/JPG/PNG) *</span></label>
+        <div class="grid2">
+          <label class="float"><input name="transcript_file" type="file" accept=".pdf" required><span>Attestat/Transcript (PDF) *</span></label>
+          <label class="float"><input name="cv_file" type="file" accept=".pdf"><span>CV/Resume (PDF) (ixtiyoriy)</span></label>
+        </div>
+        <div class="grid2">
+          <label class="float"><input name="ielts_pdf" type="file" accept=".pdf,.jpg,.jpeg,.png"><span>IELTS/TOEFL/Duolingo sertifikati</span></label>
+          <label class="float"><input name="sat_pdf" type="file" accept=".pdf,.jpg,.jpeg,.png"><span>SAT/ACT sertifikati</span></label>
+        </div>
+        <label class="float"><input name="cert_files" type="file" multiple accept=".pdf,.jpg,.jpeg,.png"><span>Qo‘shimcha sertifikatlar (bir nechta fayl)</span></label>
+        <div class="row between gap"><button type="button" class="btn ghost prev">Ortga</button><button type="button" class="btn next">Keyingi</button></div>
+      </section>
+
+      <!-- STEP 4 -->
+      <section class="panel" data-step="4">
+        <h2>4 — Oila, tillar va faoliyat</h2>
+        <h3 style="margin:8px 0">Ota</h3>
+        <div class="grid2">
+          <label class="float"><input name="father_full_name" placeholder=" "><span>Ism-familiya</span></label>
+          <label class="float"><input name="father_dob" placeholder="DD/MM/YYYY"><span>Tug‘ilgan sana</span></label>
+          <label class="float"><input name="father_phone" placeholder=" "><span>Telefon</span></label>
+          <label class="float"><input name="father_email" type="email" placeholder=" "><span>Email</span></label>
+        </div>
+        <div class="grid2">
+          <label class="float textarea"><textarea name="father_university_en" rows="3"></textarea><span>O‘qigan universitet(lar) — inglizcha nomi, manzili, daraja, yil</span></label>
+          <label class="float"><input name="father_occupation" placeholder="Ish joyi va lavozim"><span>Ish joyi / lavozim</span></label>
+        </div>
+        <h3 style="margin:8px 0">Ona</h3>
+        <div class="grid2">
+          <label class="float"><input name="mother_full_name" placeholder=" "><span>Ism-familiya</span></label>
+          <label class="float"><input name="mother_dob" placeholder="DD/MM/YYYY"><span>Tug‘ilgan sana</span></label>
+          <label class="float"><input name="mother_phone" placeholder=" "><span>Telefon</span></label>
+          <label class="float"><input name="mother_email" type="email" placeholder=" "><span>Email</span></label>
+        </div>
+        <div class="grid2">
+          <label class="float textarea"><textarea name="mother_university_en" rows="3"></textarea><span>O‘qigan universitet(lar) — inglizcha nomi, manzili, daraja, yil</span></label>
+          <label class="float"><input name="mother_occupation" placeholder="Ish joyi va lavozim"><span>Ish joyi / lavozim</span></label>
+        </div>
+        <div class="grid2">
+          <label class="float">
+            <select name="parents_status" required>
+              <option value="">— Tanlang —</option><option>Married</option><option>Divorced</option><option>Widowed</option>
+            </select><span>Ota-ona oilaviy holati *</span>
+          </label>
+          <label class="float"><input name="living_with" placeholder="Agar ajrashgan bo‘lsa — kim bilan?"><span>Kim bilan yashaysiz?</span></label>
+        </div>
+        <div class="grid2">
+          <label class="float"><input name="parent_death_info" placeholder="DD/MM/YYYY"><span>Vafot sanasi (agar mavjud)</span></label>
+          <label class="float textarea"><textarea name="siblings" rows="2"></textarea><span>Tug‘ishganlar (ism + yosh)</span></label>
+        </div>
+        <label class="float textarea"><textarea name="honors" rows="2"></textarea><span>Faxriy unvonlar / tanlov natijalari</span></label>
+        <label class="float textarea"><textarea name="future_plans" rows="2"></textarea><span>Kelajak rejalari (kasb va bosqich)</span></label>
+        <div class="grid2">
+          <label class="float textarea"><textarea name="activities" rows="3"></textarea><span>Faoliyatlar (klub, lavozim, soat/hafta, hafta/yil)</span></label>
+          <label class="float textarea"><textarea name="languages" rows="3" placeholder="Uzbek (ona tili), Russian, English, ..."></textarea><span>Tillar</span></label>
+        </div>
+        <div class="row between gap"><button type="button" class="btn ghost prev">Ortga</button><button type="button" class="btn next">Keyingi</button></div>
+      </section>
+
+      <!-- STEP 5 -->
+      <section class="panel" data-step="5">
+        <h2>5 — Tasdiqlash</h2>
+        <label class="float textarea"><textarea name="notes" rows="4" placeholder="Savollar va izohlar..."></textarea><span>Qo‘shimcha izohlar</span></label>
+        <label class="row" style="gap:10px;margin:8px 0"><input type="checkbox" name="consent" required> Men ma’lumotlarimni Upnex tomonidan ko‘rib chiqilishiga roziman.</label>
+        <div class="row between gap"><button type="button" class="btn ghost prev">Ortga</button><button type="submit" class="btn">Yuborish</button></div>
+        <div id="status" style="min-height:20px;font-size:14px;margin-top:8px"></div>
+      </section>
+    </form>
+
+    <section class="privacy glass">
+      <h3>Maxfiylik</h3>
+      <p>Ma’lumotlaringiz faqat grant, universitetga topshirish va viza jarayonida qo‘llaniladi. Biz ularni uchinchi tomonlarga sotmaymiz.</p>
+    </section>
+  </main>
+
+  <footer class="shell glass footer">
+    <p>© <span id="year"></span> Upnex Consulting</p>
+  </footer>
+
+  <script>
+    // year footer
+    (document.getElementById('year')||{}).textContent=new Date().getFullYear();
+    // stepper logic (pure client-side)
+    const panels=[...document.querySelectorAll('.panel')];
+    let step=0; const show=i=>panels.forEach((p,idx)=>p.classList.toggle('active', idx===i)); show(step);
+    document.querySelectorAll('.next').forEach(b=>b.addEventListener('click',()=>{const f=document.getElementById('form'); if(!f.reportValidity()) return; step=Math.min(step+1, panels.length-1); show(step);}));
+    document.querySelectorAll('.prev').forEach(b=>b.addEventListener('click',()=>{step=Math.max(step-1,0);show(step);}));
+    // floating label helper
+    document.querySelectorAll('.float input,.float textarea').forEach(el=>{if(!el.getAttribute('placeholder')) el.setAttribute('placeholder',' ');});
+  </script>
+</body>
+</html>
